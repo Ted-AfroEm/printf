@@ -7,6 +7,7 @@
  *
  * Return: number of characters printed excluding the null byte
  */
+
 int _printf(const char *format, ...)
 {
     int length = 0;
@@ -35,6 +36,17 @@ int _printf(const char *format, ...)
 				_putchar(c);
 				ptr = ptr + 1;
 			}
+			else if(*(ptr + 1) == 's')
+			{
+			    int i = 0;
+			    s = va_arg(p, char *);
+
+			    while(s[i] != '\0')
+			        _putchar(s[i++]);
+			    
+			    ptr = ptr + 1;
+			    length += i - 1;
+			}
 
 		}
 		else
@@ -45,5 +57,8 @@ int _printf(const char *format, ...)
 	}
 
 
+
 	return (length);
 }
+
+
