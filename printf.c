@@ -1,4 +1,5 @@
 #include "main.h"
+#include <sdtarg.h>
 
 /**
  * _printf - clone of printf function
@@ -8,25 +9,41 @@
  */
 int _printf(const char *format, ...)
 {
-	int i;
+    int length = 0;
+	char c;
+	char *s;
 	int n;
+
 	const char *ptr;
+	va_list p;
 
-	i = 0;
-	n = 0;
 	ptr = format;
-	while (*ptr != '\0')
+
+
+	va_start(p, format);
+	ptr = format;
+	
+	while(*ptr != '\0')
 	{
-
+       
 		if ((*ptr == '%') && (*(ptr + 1) != '%'))
-			n++;
+		{	
 
-		_putchar(*ptr);
+			if(*(ptr + 1) == 'c')
+			{
+		        c = va_arg(p, int);
+				_putchar(c);
+				ptr = ptr + 1;
+			}
+
+		}
+		else
+		    _putchar(*ptr);
+		    
 		ptr++;
-		i++;
+		length++;
 	}
 
-	printf("Number of %%: %i\n", n);
 
-	return (i);
+	return (length);
 }
