@@ -23,7 +23,6 @@ int _printf(const char *format, ...)
 	/* arg_count = countArguments(format); */
 
 	va_start(args, format);
-	i = 0;
 	ptr = format;
 	flagSpecifier = 0;
 
