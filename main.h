@@ -6,5 +6,8 @@
 
 int _putchar(char c);
 int _printf(const char *format, ...);
+int checkSpecifier(const char *ptr, va_list args);
+void printSingleChar(va_list args);
+void printStringChar(va_list args);
 
 #endif

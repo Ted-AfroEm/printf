@@ -1,8 +1,6 @@
 #include "main.h"
 
 int countArguments(const char *ptr);
-int checkSpecifier(const char *ptr, va_list p);
-void printSingleChar(va_list p);
 
 /**
  * _printf - clone of printf function
@@ -16,7 +14,7 @@ int _printf(const char *format, ...)
 	int arg_count;
 	int flagSpecifier;
 	const char *ptr;
-	va_list p;
+	va_list args;
 
 	i = 0;
 	arg_count = 0;
@@ -24,7 +22,7 @@ int _printf(const char *format, ...)
 
 	arg_count = countArguments(format);
 
-	va_start(p, format);
+	va_start(args, format);
 	i = 0;
 	ptr = format;
 	flagSpecifier = 0;
@@ -33,7 +31,7 @@ int _printf(const char *format, ...)
 	{
 		if ((*ptr == '%') && (*(ptr + 1) != '%'))
 		{
-			flagSpecifier = checkSpecifier(ptr, p);
+			flagSpecifier = checkSpecifier(ptr, args);
 			if (flagSpecifier == 1)
 				ptr++;
 		}
@@ -48,6 +46,7 @@ int _printf(const char *format, ...)
 		ptr++;
 		i++;
 	}
+	va_end(args);
 	printf("Arguments: %i\n", arg_count);
 	return (i);
 }
@@ -72,35 +71,4 @@ int countArguments(const char *ptr)
 	}
 
 	return (arg_count);
-}
-
-/**
- * checkSpecifier - find one of the format specifier
- * @ptr: ptr to string
- * @p: va_list
- *
- * Return: flag 1 for true else 0 for false
- */
-int checkSpecifier(const char *ptr, va_list p)
-{
-	/*_putchar(*ptr);*/
-	if (*(ptr + 1) == 'c')
-	{
-		printSingleChar(p);
-		return (1);
-	}
-	return (0);
-}
-
-/**
- * printSingleChar - print a single character
- * @p: va_list
- *
- * Return: nothing
- */
-void printSingleChar(va_list p)
-{
-	char c = va_arg(p, int);
-
-	_putchar(c);
 }
