@@ -64,7 +64,7 @@ void printDecimal(va_list args)
 
 	int  n = va_arg(args, int);
 
-	print(n);
+	printNumber(n);
 }
 
 /**
@@ -83,7 +83,7 @@ void printNumber(int n)
 	}
 
 	if (n / 10)
-		print(n / 10);
+		printNumber(n / 10);
 
 	_putchar(n % 10 + '0');
 }
