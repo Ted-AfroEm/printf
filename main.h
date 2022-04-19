@@ -9,7 +9,8 @@ int checkSpecifier(const char *ptr, va_list args);
 void printSingleChar(va_list args);
 void printStringChar(va_list args);
 void printDecimal(va_list args);
-void printNumber(va_list args);
+void printNumber(int n);
+
 
 #endif
 
