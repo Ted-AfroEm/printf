@@ -1,5 +1,7 @@
 #include "main.h"
 
+int countArguments(const char *ptr);
+
 /**
  * _printf - clone of printf function
  * @format: the first parameter
@@ -16,45 +18,53 @@ int _printf(const char *format, ...)
 	i = 0;
 	arg_count = 0;
 	ptr = format;
-	while (*ptr != '\0')
-	{
 
-		if ((*ptr == '%') && (*(ptr + 1) != '%'))
-			arg_count++;
-
-		/*_putchar(*ptr);*/
-		ptr++;
-		i++;
-	}
+	arg_count = countArguments(format);
 
 	va_start(p, format);
 	i = 0;
 	ptr = format;
-	
+
 	while(*ptr != '\0')
 	{
-
 		if ((*ptr == '%') && (*(ptr + 1) != '%'))
-		{	
-			/*printf("%c", *(ptr+1));*/
+		{
 			if(*(ptr + 1) == 'c')
-			{
-				/*printf("here2\n");*/
-				while(i < arg_count)
 				{
 					char c = va_arg(p, int);
 					_putchar(c);
-					/*printf("here3\n");*/
-					ptr = ptr + 2;
-					i++;
+					ptr++;
 				}
-			}
 		}
-		_putchar(*ptr);
+		else
+			_putchar(*ptr);
 		ptr++;
+		i++;
 	}
 
 	printf("Number of %%: %i\n", arg_count);
 
 	return (i);
+}
+
+/**
+ * countArguments - count number of argumetns passed
+ * @ptr: pointer to string
+ *
+ * Return: number of arguments
+ */
+int countArguments(const char *ptr)
+{
+	int arg_count;
+
+	arg_count = 0;
+	while (*ptr != '\0')
+	{
+
+		if ((*ptr == '%') && (*(ptr + 1) != '%'))
+			arg_count++;
+		ptr++;
+	}
+
+	return (arg_count);
 }
