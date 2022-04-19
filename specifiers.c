@@ -20,7 +20,7 @@ int checkSpecifier(const char *ptr, va_list args)
 		printStringChar(args);
 		return (1);
 	}
-	else if(*(ptr + 1) == 'd')
+	else if (*(ptr + 1) == 'd')
 	{
 		printDecimal(args);
 		return (1);
