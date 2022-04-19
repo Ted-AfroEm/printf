@@ -1,2 +1,8 @@
+# ignore all emacs generated backup files
 *~
+
+# ignore all files with main.c
 *main.c
+
+# ignore all excutable files
+*.out
