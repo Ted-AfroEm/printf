@@ -11,16 +11,16 @@ int countArguments(const char *ptr);
 int _printf(const char *format, ...)
 {
 	int i;
-	int arg_count;
+	/* int arg_count; */
 	int flagSpecifier;
 	const char *ptr;
 	va_list args;
 
 	i = 0;
-	arg_count = 0;
+	/* arg_count = 0; */
 	ptr = format;
 
-	arg_count = countArguments(format);
+	/* arg_count = countArguments(format); */
 
 	va_start(args, format);
 	i = 0;
@@ -47,7 +47,7 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	printf("Arguments: %i\n", arg_count);
+	/* printf("Arguments: %i\n", arg_count); */
 	return (i);
 }
 
