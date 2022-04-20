@@ -5,7 +5,7 @@
  * @ptr: ptr to string
  * @args: va_list
  *
- * Return: flag 1 for true else 0 for false
+ * Return: flag +ve for true else 0 for false
  */
 int checkSpecifier(const char *ptr, va_list args)
 {
@@ -17,13 +17,11 @@ int checkSpecifier(const char *ptr, va_list args)
 	}
 	else if (*(ptr + 1) == 's')
 	{
-		printStringChar(args);
-		return (1);
+		return (printStringChar(args));
 	}
 	else if (*(ptr + 1) == 'd')
 	{
-		printDecimal(args);
-		return (1);
+		return (printDecimal(args));
 	}
 	return (0);
 }
@@ -45,50 +43,61 @@ void printSingleChar(va_list args)
  * printStringChar - print a string characters
  * @args: va_list
  *
- * Return: nothing
+ * Return: length of printed characters
  */
-void printStringChar(va_list args)
+int printStringChar(va_list args)
 {
 	char *c = va_arg(args, char *);
+	int i = 0;
 
 	while (*c)
 	{
 		_putchar(*c);
 		c++;
+		i++;
 	}
+	i++;
+	return (i);
 }
 
 /**
  * printDecimal - print a decimal number
  * @args: va_list
  *
- * Return: nothing
+ * Return: length of printed decimal
  */
-void printDecimal(va_list args)
+int printDecimal(va_list args)
 {
 
 	int  n = va_arg(args, int);
+	int i = 0;
 
-	printNumber(n);
+	return (printNumber(n, i));
 }
 
 /**
  * printNumber - prints number
  * @n: the number to be printed
+ * @i: the number of printed numbers
  *
- * Return: nothing
+ * Return: length of a given number
  */
 
-void printNumber(int n)
+int printNumber(int n, int i)
 {
 	if (n < 0)
 	{
 		_putchar('-');
 		n = -n;
+		/*i++;*/
 	}
 
 	if (n / 10)
-		printNumber(n / 10);
-
+	{
+		i++;
+		printNumber(n / 10, i);
+	}
+	/* i++; */
 	_putchar(n % 10 + '0');
+	return (i);
 }
