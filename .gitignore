@@ -6,3 +6,7 @@
 
 # ignore all excutable files
 *.out
+
+# ignore files that begin and end with #
+
+*#
