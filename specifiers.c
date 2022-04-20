@@ -13,7 +13,7 @@ int checkSpecifier(const char *ptr, va_list args)
 	if (*(ptr + 1) == 'c')
 	{
 		printSingleChar(args);
-		return (1);
+		return (2);
 	}
 	else if (*(ptr + 1) == 's')
 	{

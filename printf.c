@@ -31,8 +31,11 @@ int _printf(const char *format, ...)
 		if ((*ptr == '%') && (*(ptr + 1) != '%'))
 		{
 			flagSpecifier = checkSpecifier(ptr, args);
-			if (flagSpecifier == 1)
+			if (flagSpecifier)
+			{
 				ptr++;
+				i = i + flagSpecifier - 2;
+			}
 		}
 		/* if two % come condecutively print one %*/
 		else if ((*ptr == '%') && (*(ptr + 1) == '%'))
