@@ -1,0 +1,7 @@
+# NAME
+_prinf
+
+# SYNOPSIS
+#include <stdarg.h>
+
+int _
